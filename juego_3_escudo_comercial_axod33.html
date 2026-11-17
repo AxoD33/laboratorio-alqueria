@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es" data-dev="@AxoD">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="@AxoD">
+    <title>Escudo Comercial - Policía Nacional · CAI La Alquería</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eef2ef;
+            color: #1e293b;
+            -webkit-tap-highlight-color: transparent;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .anim-in {
+            animation: fadeUp 0.25s ease forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-2 sm:p-5">
+
+    <div class="w-full max-w-md bg-white border border-slate-200 rounded-3xl shadow-xl overflow-hidden flex flex-col min-h-[90vh] relative">
+
+        <header class="bg-gradient-to-r from-[#003819] via-[#004d23] to-[#003819] border-b-2 border-[#c5a059] px-5 py-3.5 flex items-center justify-between text-white">
+            <div>
+                <div class="text-[10px] font-bold uppercase tracking-widest text-[#e5c687]">Policía Nacional de Colombia</div>
+                <div class="text-sm font-extrabold text-white leading-tight">ECSAN · CAI La Alquería</div>
+            </div>
+            <span class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/10 border border-white/20 text-[#e5c687]">Módulo 3</span>
+        </header>
+
+        <section id="screen-expired" class="hidden p-6 flex-1 flex flex-col justify-between text-center anim-in">
+            <div class="my-auto">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-3xl">⏳</div>
+                <div class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-extrabold uppercase mb-3">
+                    Período Piloto Finalizado
+                </div>
+                <h2 class="text-2xl font-extrabold text-slate-900 mb-3">
+                    Licencia de 4 Meses Vencida
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                    El ciclo inicial de evaluación del <strong class="text-slate-900">Laboratorio Móvil de Prevención del Fraude Digital</strong> ha finalizado.
+                </p>
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs text-slate-600 space-y-3">
+                    <div class="font-bold text-slate-800">Para renovar el servicio institucional, contacta a <span class="text-[#004d23]">@AxoD</span>:</div>
+                    <a href="https://wa.me/573214714380?text=Hola%20%40AxoD%2C%20solicito%20renovaci%C3%B3n%20del%20Laboratorio%20M%C3%B3vil%20Antifraude." target="_blank" class="block w-full py-3 rounded-xl bg-[#004d23] hover:bg-[#003819] text-white font-extrabold transition">
+                        📲 WhatsApp: 321 471 4380
+                    </a>
+                    <a href="mailto:cobra9.2@hotmail.es?subject=Renovaci%C3%B3n%20Laboratorio%20M%C3%B3vil%20Antifraude" class="block w-full py-2.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-100 text-slate-800 font-bold transition">
+                        ✉️ cobra9.2@hotmail.es
+                    </a>
+                </div>
+            </div>
+            <div class="text-center text-[10px] text-slate-400 mt-4">
+                Desarrollado por @AxoD · 321 471 4380
+            </div>
+        </section>
+
+        <section id="screen-intro" class="p-5 flex-1 flex flex-col justify-between anim-in">
+            <div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#004d23]/10 border border-[#004d23]/20 text-[#004d23] text-xs font-bold mb-3">
+                    <span>🗣️</span> DEFENSA CONTRA INGENIERÍA SOCIAL
+                </div>
+                <h1 class="text-2xl font-extrabold text-slate-900 leading-snug mb-2">
+                    Escudo Comercial
+                </h1>
+                <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                    Los delincuentes emplean el <strong class="text-slate-900">afán, la distracción y la suplantación</strong> para inducir errores en el punto de venta. Entrene protocolos de respuesta segura y cordial.
+                </p>
+
+                <div class="bg-[#004d23]/[0.04] border border-[#004d23]/15 rounded-2xl p-4 space-y-3 text-xs text-slate-700">
+                    <div class="font-extrabold text-[#004d23] uppercase">Casos frecuentes en La Alquería:</div>
+                    <div>🚕 Comprador con urgencia artificial por vehículo mal estacionado.</div>
+                    <div>📞 Llamada simulada del supuesto propietario del establecimiento.</div>
+                    <div>📲 Pretexto de falla temporal en la plataforma bancaria.</div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <button onclick="startGame()" class="w-full py-4 rounded-2xl bg-[#004d23] hover:bg-[#003819] text-white font-extrabold text-base shadow-md transition">
+                    INICIAR PRÁCTICA DE ATENCIÓN
+                </button>
+                <div class="text-center text-[10px] text-slate-400 mt-3 tracking-wide">
+                    @AxoD · 321 471 4380 · cobra9.2@hotmail.es
+                </div>
+            </div>
+        </section>
+
+        <section id="screen-play" class="hidden flex-1 flex flex-col anim-in">
+            <div class="bg-slate-50 p-4 border-b border-slate-200">
+                <div class="flex justify-between items-center mb-2">
+                    <span id="m3-step" class="text-xs font-extrabold px-3 py-1 rounded-lg bg-[#004d23]/10 text-[#004d23]">Situación 1 de 4</span>
+                    <span id="m3-score" class="text-xs font-extrabold text-[#004d23]">Aciertos: 0/4</span>
+                </div>
+                <div class="flex items-center gap-3 bg-white border border-slate-200 p-3 rounded-2xl shadow-sm">
+                    <div id="m3-avatar" class="w-11 h-11 rounded-full bg-slate-100 flex items-center justify-center text-2xl shrink-0">🚕</div>
+                    <div class="flex-1">
+                        <div id="m3-name" class="text-sm font-extrabold text-slate-900">Cliente con Taxi en la Puerta</div>
+                        <div id="m3-tactic" class="text-xs text-amber-700 font-semibold">Ingeniería Social: Urgencia y Afán</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="m3-chat" class="p-4 flex-1 space-y-3 overflow-y-auto"></div>
+
+            <div id="m3-options" class="p-4 bg-slate-50 border-t border-slate-200 space-y-2.5"></div>
+        </section>
+
+        <section id="screen-end" class="hidden p-6 flex-1 flex flex-col justify-between text-center anim-in">
+            <div class="my-auto">
+                <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-[#004d23]/10 flex items-center justify-center text-3xl">🛡️</div>
+                <h2 class="text-2xl font-extrabold text-slate-900 mb-2">Entrenamiento Finalizado</h2>
+                <p id="final-summary" class="text-sm text-slate-600 mb-5"></p>
+                <div class="bg-[#004d23]/[0.06] border border-[#004d23]/20 rounded-2xl p-4 text-xs text-slate-700 leading-relaxed text-left space-y-2">
+                    <div class="font-extrabold text-[#004d23] uppercase">Protocolo Institucional Recomendado:</div>
+                    <div>1. Mantenga la calma y no ceda ante presiones de tiempo.</div>
+                    <div>2. Verifique directamente con el propietario a su número registrado.</div>
+                    <div>3. Confirme el saldo en su aplicación bancaria antes de entregar.</div>
+                </div>
+            </div>
+            <div>
+                <button onclick="resetGame()" class="w-full py-4 rounded-2xl bg-[#004d23] hover:bg-[#003819] text-white font-extrabold text-base transition">
+                    REPETIR PRÁCTICA
+                </button>
+                <div class="text-center text-[10px] text-slate-400 mt-3">
+                    @AxoD · 321 471 4380 · cobra9.2@hotmail.es
+                </div>
+            </div>
+        </section>
+
+        <div id="edu-modal" class="hidden fixed inset-0 bg-slate-900/75 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="w-full max-w-md bg-white border border-slate-200 rounded-3xl p-5 shadow-2xl max-h-[88vh] overflow-y-auto">
+                <div id="edu-badge" class="inline-block px-3 py-1 rounded-full text-xs font-extrabold mb-2"></div>
+                <h3 id="edu-title" class="text-xl font-extrabold text-slate-900 mb-2"></h3>
+                <p id="edu-desc" class="text-sm text-slate-600 leading-relaxed mb-4"></p>
+                <div class="bg-[#004d23]/[0.06] border border-[#004d23]/20 rounded-2xl p-3.5 mb-5">
+                    <div class="text-[11px] font-extrabold text-[#004d23] uppercase mb-1">📘 Orientación Preventiva · Policía Nacional:</div>
+                    <p id="edu-law" class="text-xs text-slate-700 leading-relaxed"></p>
+                </div>
+                <button id="edu-next-btn" class="w-full py-4 rounded-2xl bg-[#004d23] hover:bg-[#003819] text-white font-extrabold text-sm transition">
+                    CONTINUAR →
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        (function(){
+            const _0x1a = atob('MjAyNy0wMy0xN1QyMzo1OTo1OQ==');
+            const _0x1b = 'https://axod33.github.io/laboratorio-alqueria/licencia.json';
+            window._0xchk = async function() {
+                if (new Date() > new Date(_0x1a)) { _0xlock(); return false; }
+                try {
+                    const r = await fetch(_0x1b + '?t=' + Date.now(), { cache: 'no-store' });
+                    if (r.ok) {
+                        const d = await r.json();
+                        if (d && (d.activo === false || (d.expira && new Date() > new Date(d.expira)))) {
+                            _0xlock(); return false;
+                        }
+                    }
+                } catch (e) {}
+                return true;
+            };
+            function _0xlock() {
+                ['screen-intro','screen-play','screen-end'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.add('hidden');
+                });
+                const ex = document.getElementById('screen-expired');
+                if (ex) ex.classList.remove('hidden');
+            }
+            window.addEventListener('DOMContentLoaded', window._0xchk);
+        })();
+
+        let currentIdx = 0;
+        let wins = 0;
+
+        const cases = [
+            {
+                avatar: "🚕",
+                name: "Cliente con Taxi en la Puerta",
+                tactic: "Ingeniería Social: Urgencia y Afán",
+                msg: "«¡Vecino, empáqueme rápido esos rollos que tengo el taxi mal parqueado y me van a inmovilizar! Mire, ya le transferí por Nequi.»",
+                law: "Teoría de la Ingeniería Social: El delincuente genera urgencia artificial para evitar la verificación.",
+                options: [
+                    {
+                        text: "«Con gusto le empaco, pero por protocolo del establecimiento debo confirmar el saldo en mi celular antes de entregar.»",
+                        ok: true,
+                        feedback: "Respuesta adecuada. Mantiene la cordialidad institucional sin ceder a la presión psicológica del comprador."
+                    },
+                    {
+                        text: "Entregar rápido para evitarle la multa, observando únicamente la pantalla del comprador.",
+                        ok: false,
+                        feedback: "Vulnerabilidad frecuente en horas pico (11:00 a. m. - 6:00 p. m.). Nunca entregue sin confirmar el ingreso en su propia cuenta."
+                    }
+                ]
+            },
+            {
+                avatar: "📞",
+                name: "Llamada del Supuesto Dueño",
+                tactic: "Suplantación de Autoridad",
+                msg: "«Aquí estoy al teléfono con el dueño del local, él me autorizó llevarme el pedido y me dijo que ahorita cuadra con usted.»",
+                law: "Teoría de las Actividades Cotidianas: El infractor aprovecha la ausencia del propietario y la falta de protocolos de validación.",
+                options: [
+                    {
+                        text: "No recibir su teléfono y comunicarse usted mismo directamente al número guardado del propietario.",
+                        ok: true,
+                        feedback: "Protocolo correcto. Al marcar directamente al contacto guardado se desarticula la suplantación."
+                    },
+                    {
+                        text: "Hablar por el celular que le entrega el comprador para confirmar.",
+                        ok: false,
+                        feedback: "Riesgo alto. Al otro lado de la línea suele encontrarse un cómplice suplantando al propietario."
+                    }
+                ]
+            },
+            {
+                avatar: "📲",
+                name: "Excusa de 'La App Está Caída'",
+                tactic: "Distracción Técnica",
+                msg: "«Nequi está caído y por eso no le sale en su celular, pero mire que ya le llegó el mensaje de texto confirmando.»",
+                law: "Ley 2439 de 2024 y lineamientos MinTIC: Validar siempre en el canal oficial del receptor.",
+                options: [
+                    {
+                        text: "«Si la plataforma presenta demora, esperamos unos minutos a que refleje el abono en mi cuenta o puede cancelar en efectivo.»",
+                        ok: true,
+                        feedback: "Decisión acertada. Si una plataforma estuviera caída, tampoco permitiría efectuar el envío."
+                    },
+                    {
+                        text: "Confiar en el mensaje SMS recibido y hacer entrega del pedido.",
+                        ok: false,
+                        feedback: "Los mensajes SMS pueden ser enviados desde números particulares simulando entidades financieras."
+                    }
+                ]
+            },
+            {
+                avatar: "🤝",
+                name: "Cliente Frecuente con Pago Verificado",
+                tactic: "Atención Segura y Cordial",
+                msg: "«Buenos días vecino, ya le pasé los $95.000. Revise con tranquilidad en su celular que ahí ya le aparece.»",
+                law: "Fortalecimiento de la seguridad comercial y la convivencia ciudadana en el barrio La Alquería.",
+                options: [
+                    {
+                        text: "Confirmar en su dispositivo que los $95.000 sumaron al saldo disponible y entregar agradeciendo su compra.",
+                        ok: true,
+                        feedback: "Excelente gestión. Verificó el movimiento real y brindó un servicio seguro y cordial."
+                    },
+                    {
+                        text: "Rechazar el pago aunque ya aparece reflejado en su aplicación oficial.",
+                        ok: false,
+                        feedback: "Cuando el saldo ya figura acreditado en la aplicación oficial del comercio, la operación es legítima."
+                    }
+                ]
+            }
+        ];
+
+        async function startGame() {
+            if (!(await window._0xchk())) return;
+            currentIdx = 0;
+            wins = 0;
+            document.getElementById('screen-intro').classList.add('hidden');
+            document.getElementById('screen-play').classList.remove('hidden');
+            loadCase();
+        }
+
+        function loadCase() {
+            const c = cases[currentIdx];
+            document.getElementById('m3-step').textContent = `Situación ${currentIdx + 1} de ${cases.length}`;
+            document.getElementById('m3-score').textContent = `Aciertos: ${wins}/${cases.length}`;
+            document.getElementById('m3-avatar').textContent = c.avatar;
+            document.getElementById('m3-name').textContent = c.name;
+            document.getElementById('m3-tactic').textContent = c.tactic;
+
+            document.getElementById('m3-chat').innerHTML = `
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-sm text-slate-800 leading-relaxed shadow-sm">
+                    <div class="text-xs font-extrabold text-[#004d23] uppercase mb-1">Manifestación del comprador:</div>
+                    ${c.msg}
+                </div>
+            `;
+
+            document.getElementById('m3-options').innerHTML = `
+                <div class="text-xs font-bold text-slate-600 mb-1">Seleccione el protocolo de respuesta:</div>
+                ${c.options.map((o, i) => `
+                    <button onclick="selectOption(${i})" class="w-full text-left p-3.5 rounded-2xl bg-white hover:bg-slate-50 border border-slate-300 hover:border-[#004d23] text-sm text-slate-800 leading-snug shadow-sm transition">
+                        ${o.text}
+                    </button>
+                `).join('')}
+            `;
+        }
+
+        function selectOption(idx) {
+            const c = cases[currentIdx];
+            const opt = c.options[idx];
+            if (opt.ok) wins++;
+            document.getElementById('m3-score').textContent = `Aciertos: ${wins}/${cases.length}`;
+
+            const modal = document.getElementById('edu-modal');
+            const badge = document.getElementById('edu-badge');
+
+            if (opt.ok) {
+                badge.textContent = "✅ PROTOCOLO SEGURO";
+                badge.className = "inline-block px-3 py-1 rounded-full text-xs font-extrabold mb-2 bg-emerald-100 text-[#004d23]";
+            } else {
+                badge.textContent = "⚠️ RIESGO EN PUNTO DE VENTA";
+                badge.className = "inline-block px-3 py-1 rounded-full text-xs font-extrabold mb-2 bg-red-100 text-red-700";
+            }
+
+            document.getElementById('edu-title').textContent = opt.ok ? "Actuación Acertada" : "Alerta Preventiva";
+            document.getElementById('edu-desc').textContent = opt.feedback;
+            document.getElementById('edu-law').textContent = c.law;
+
+            document.getElementById('edu-next-btn').onclick = () => {
+                modal.classList.add('hidden');
+                currentIdx++;
+                if (currentIdx < cases.length) {
+                    loadCase();
+                } else {
+                    document.getElementById('screen-play').classList.add('hidden');
+                    document.getElementById('screen-end').classList.remove('hidden');
+                    document.getElementById('final-summary').textContent = `Obtuvo ${wins} de ${cases.length} respuestas seguras en el protocolo de atención.`;
+                }
+            };
+
+            modal.classList.remove('hidden');
+        }
+
+        async function resetGame() {
+            if (!(await window._0xchk())) return;
+            document.getElementById('screen-end').classList.add('hidden');
+            document.getElementById('screen-intro').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

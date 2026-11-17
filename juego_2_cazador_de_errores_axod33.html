@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es" data-dev="@AxoD">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="@AxoD">
+    <title>Cazador de Errores - Policía Nacional · CAI La Alquería</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eef2ef;
+            color: #1e293b;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .anomaly-found {
+            border: 3px solid #dc2626 !important;
+            background-color: rgba(220, 38, 38, 0.12) !important;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(220, 38, 38, 0.35);
+        }
+        .anomaly-zone {
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.15s ease;
+        }
+        .anomaly-zone:hover {
+            background-color: rgba(0, 77, 35, 0.06);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-2 sm:p-5">
+
+    <div class="w-full max-w-md bg-white border border-slate-200 rounded-3xl shadow-xl overflow-hidden flex flex-col min-h-[90vh] relative">
+
+        <header class="bg-gradient-to-r from-[#003819] via-[#004d23] to-[#003819] border-b-2 border-[#c5a059] px-5 py-3.5 flex items-center justify-between text-white">
+            <div>
+                <div class="text-[10px] font-bold uppercase tracking-widest text-[#e5c687]">Policía Nacional de Colombia</div>
+                <div class="text-sm font-extrabold text-white leading-tight">ECSAN · CAI La Alquería</div>
+            </div>
+            <span class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/10 border border-white/20 text-[#e5c687]">Módulo 2</span>
+        </header>
+
+        <section id="screen-expired" class="hidden p-6 flex-1 flex flex-col justify-between text-center">
+            <div class="my-auto">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-3xl">⏳</div>
+                <div class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-extrabold uppercase mb-3">
+                    Período Piloto Finalizado
+                </div>
+                <h2 class="text-2xl font-extrabold text-slate-900 mb-3">
+                    Licencia de 4 Meses Vencida
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                    El ciclo inicial de evaluación del <strong class="text-slate-900">Laboratorio Móvil de Prevención del Fraude Digital</strong> ha finalizado.
+                </p>
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs text-slate-600 space-y-3">
+                    <div class="font-bold text-slate-800">Para renovar el servicio institucional, contacta a <span class="text-[#004d23]">@AxoD</span>:</div>
+                    <a href="https://wa.me/573214714380?text=Hola%20%40AxoD%2C%20solicito%20renovaci%C3%B3n%20del%20Laboratorio%20M%C3%B3vil%20Antifraude." target="_blank" class="block w-full py-3 rounded-xl bg-[#004d23] hover:bg-[#003819] text-white font-extrabold transition">
+                        📲 WhatsApp: 321 471 4380
+                    </a>
+                    <a href="mailto:cobra9.2@hotmail.es?subject=Renovaci%C3%B3n%20Laboratorio%20M%C3%B3vil%20Antifraude" class="block w-full py-2.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-100 text-slate-800 font-bold transition">
+                        ✉️ cobra9.2@hotmail.es
+                    </a>
+                </div>
+            </div>
+            <div class="text-center text-[10px] text-slate-400 mt-4">
+                Desarrollado por @AxoD · 321 471 4380
+            </div>
+        </section>
+
+        <section id="screen-intro" class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#004d23]/10 border border-[#004d23]/20 text-[#004d23] text-xs font-bold mb-3">
+                    <span>🔍</span> AUDITORÍA VISUAL DE COMPROBANTES
+                </div>
+                <h1 class="text-2xl font-extrabold text-slate-900 leading-snug mb-2">
+                    Cazador de Errores
+                </h1>
+                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                    Identifique las <strong class="text-slate-900">3 señales de alerta</strong> ocultas en comprobantes editados, mensajes SMS falsos y transferencias programadas tocando directamente sobre cada anomalía.
+                </p>
+
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3.5 mb-4">
+                    <div class="text-xs font-extrabold text-[#004d23] uppercase tracking-wide mb-2">
+                        ⏱️ Selecciona el ritmo de lectura:
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button id="pace-relaxed" onclick="setPace('relaxed')" class="py-2.5 px-3 rounded-xl bg-[#004d23] text-white font-bold text-xs border-2 border-[#003819] shadow-sm transition">
+                            🐢 Sin Reloj<br><span class="font-normal text-[11px] opacity-90">Lectura pausada</span>
+                        </button>
+                        <button id="pace-timed" onclick="setPace('timed')" class="py-2.5 px-3 rounded-xl bg-white text-slate-700 font-bold text-xs border border-slate-300 transition">
+                            ⏳ Tiempo Amplio<br><span class="font-normal text-[11px] text-slate-500">60 seg + tiempo extra</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-[#004d23]/[0.04] border border-[#004d23]/15 rounded-2xl p-3.5 text-xs text-slate-700 space-y-1.5">
+                    <div><strong class="text-slate-900">Local de Referencia:</strong> Surtidora La Alquería</div>
+                    <div><strong class="text-slate-900">Línea / Llave Oficial:</strong> <span class="mono text-[#004d23] font-bold">312 489 7701</span></div>
+                    <div><strong class="text-slate-900">Fecha de Referencia:</strong> <span class="text-slate-900 font-bold">Viernes 17 Nov · 2:30 PM</span></div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <button onclick="startGame()" class="w-full py-4 rounded-2xl bg-[#004d23] hover:bg-[#003819] text-white font-extrabold text-base shadow-md transition">
+                    INICIAR INSPECCIÓN VISUAL
+                </button>
+                <div class="text-center text-[10px] text-slate-400 mt-3 tracking-wide">
+                    @AxoD · 321 471 4380 · cobra9.2@hotmail.es
+                </div>
+            </div>
+        </section>
+
+        <section id="screen-play" class="hidden flex-1 flex flex-col">
+            <div class="bg-slate-50 p-4 border-b border-slate-200">
+                <div class="flex justify-between items-center mb-2">
+                    <span id="m2-step" class="text-xs font-extrabold px-3 py-1 rounded-lg bg-[#004d23]/10 text-[#004d23]">Comprobante 1 de 3</span>
+                    <div class="flex items-center gap-2">
+                        <span id="m2-timer-box" class="hidden mono text-sm font-bold bg-white border border-slate-300 px-2.5 py-1 rounded-lg text-slate-800">60s</span>
+                        <button id="m2-addtime-btn" onclick="addExtraTime()" class="hidden px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 text-xs font-bold border border-amber-300">+20s</button>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-3 text-xs space-y-1 shadow-sm">
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">Local / Llave:</span>
+                        <span class="font-bold text-slate-900">Surtidora La Alquería (312 489 7701)</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">Fecha Actual:</span>
+                        <span class="font-bold text-[#004d23]">Viernes 17 Nov · 2:30 PM</span>
+                    </div>
+                </div>
+                <div class="mt-2.5 flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-700">Toque los 3 errores ocultos:</span>
+                    <div class="flex gap-2" id="m2-dots">
+                        <span class="w-4 h-4 rounded-full bg-slate-300"></span>
+                        <span class="w-4 h-4 rounded-full bg-slate-300"></span>
+                        <span class="w-4 h-4 rounded-full bg-slate-300"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="m2-receipt-area" class="p-4 flex-1 flex flex-col items-center justify-center overflow-y-auto bg-slate-100/60"></div>
+
+            <div class="p-3.5 bg-slate-50 border-t border-slate-200 flex items-center justify-between gap-2">
+                <span id="m2-toast" class="text-xs text-slate-600 flex-1">Toque sobre los datos sospechosos...</span>
+                <button onclick="useHint()" class="px-3.5 py-2.5 rounded-xl bg-amber-100 border border-amber-300 text-amber-900 text-xs font-extrabold shrink-0">
+                    💡 Ver Pista
+                </button>
+            </div>
+        </section>
+
+        <section id="screen-end" class="hidden p-6 flex-1 flex flex-col justify-between text-center">
+            <div class="my-auto">
+                <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-[#004d23]/10 flex items-center justify-center text-3xl">🏆</div>
+                <h2 class="text-2xl font-extrabold text-slate-900 mb-2">Auditoría Visual Completada</h2>
+                <p class="text-sm text-slate-600 mb-5">Ha entrenado su capacidad de inspección para identificar las 3 modalidades más frecuentes en el sector de La Alquería.</p>
+                <div class="bg-[#004d23]/[0.06] border border-[#004d23]/20 rounded-2xl p-4 text-xs text-slate-700 leading-relaxed">
+                    <strong class="text-[#004d23]">Recomendación Policía Nacional:</strong> Verifique siempre monto exacto, número celular de destino, fecha vigente y estado aprobado de la transacción.
+                </div>
+            </div>
+            <div>
+                <button onclick="resetGame()" class="w-full py-4 rounded-2xl bg-[#004d23] hover:bg-[#003819] text-white font-extrabold text-base transition">
+                    REPETIR AUDITORÍA
+                </button>
+                <div class="text-center text-[10px] text-slate-400 mt-3">
+                    @AxoD · 321 471 4380 · cobra9.2@hotmail.es
+                </div>
+            </div>
+        </section>
+
+        <div id="edu-modal" class="hidden fixed inset-0 bg-slate-900/75 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="w-full max-w-md bg-white border border-slate-200 rounded-3xl p-5 shadow-2xl max-h-[88vh] overflow-y-auto">
+                <div id="edu-badge" class="inline-block px-3 py-1 rounded-full text-xs font-extrabold mb-2"></div>
+                <h3 id="edu-title" class="text-xl font-extrabold text-slate-900 mb-2"></h3>
+                <div id="edu-details" class="space-y-2 mb-4"></div>
+                <div class="bg-[#004d23]/[0.06] border border-[#004d23]/20 rounded-2xl p-3.5 mb-5">
+                    <div class="text-[11px] font-extrabold text-[#004d23] uppercase mb-1">📘 Orientación Preventiva · Policía Nacional:</div>
+                    <p id="edu-law" class="text-xs text-slate-700 leading-relaxed"></p>
+                </div>
+                <button id="edu-next-btn" class="w-full py-4 rounded-2xl bg-[#004d23] hover:bg-[#003819] text-white font-extrabold text-sm transition">
+                    CONTINUAR →
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        (function(){
+            const _0x1a = atob('MjAyNy0wMy0xN1QyMzo1OTo1OQ==');
+            const _0x1b = 'https://axod33.github.io/laboratorio-alqueria/licencia.json';
+            window._0xchk = async function() {
+                if (new Date() > new Date(_0x1a)) { _0xlock(); return false; }
+                try {
+                    const r = await fetch(_0x1b + '?t=' + Date.now(), { cache: 'no-store' });
+                    if (r.ok) {
+                        const d = await r.json();
+                        if (d && (d.activo === false || (d.expira && new Date() > new Date(d.expira)))) {
+                            _0xlock(); return false;
+                        }
+                    }
+                } catch (e) {}
+                return true;
+            };
+            function _0xlock() {
+                ['screen-intro','screen-play','screen-end'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.add('hidden');
+                });
+                const ex = document.getElementById('screen-expired');
+                if (ex) ex.classList.remove('hidden');
+            }
+            window.addEventListener('DOMContentLoaded', window._0xchk);
+        })();
+
+        let paceMode = 'relaxed';
+        let activeTimer = null;
+        let secondsLeft = 60;
+        let currentIdx = 0;
+        let foundSet = new Set();
+
+        const cases = [
+            {
+                title: "Comprobante Editado (App Clonada)",
+                law: "Modalidad 'Comprobantes de pago editados'. La Ley 1273 de 2009 sanciona la falsificación y manipulación de datos informáticos.",
+                anomalies: [
+                    { id: "e1", label: "Monto incompleto ($18.500 en vez de $185.000)", detail: "Falta un cero al final del valor." },
+                    { id: "e2", label: "Número celular errado (312 489 7708)", detail: "El número oficial del establecimiento termina en 7701." },
+                    { id: "e3", label: "Fecha atrasada (Martes 14 Nov)", detail: "La fecha vigente es Viernes 17 Nov; corresponde a una captura reciclada." }
+                ],
+                html: `
+                    <div class="w-full max-w-[320px] bg-white text-slate-900 rounded-2xl p-4 shadow-md border border-slate-200 space-y-3 text-xs">
+                        <div class="bg-[#200020] text-white p-3 rounded-xl text-center font-extrabold text-sm">Comprobante Nequi</div>
+                        <div onclick="hitAnomaly(this, 'e1')" data-id="e1" class="anomaly-zone p-2.5 text-center border border-slate-200">
+                            <div class="text-slate-500">Valor pagado (Pedido era $185.000):</div>
+                            <div class="text-xl font-extrabold mono text-slate-900">$ 18.500</div>
+                        </div>
+                        <div onclick="hitAnomaly(this, 'e2')" data-id="e2" class="anomaly-zone p-2 flex justify-between border border-slate-200">
+                            <span class="text-slate-500">Celular destino:</span>
+                            <span class="mono font-bold">312 489 7708</span>
+                        </div>
+                        <div onclick="hitAnomaly(this, 'e3')" data-id="e3" class="anomaly-zone p-2 flex justify-between border border-slate-200">
+                            <span class="text-slate-500">Fecha:</span>
+                            <span class="font-bold">Martes 14 Nov · 2:30 PM</span>
+                        </div>
+                        <div onclick="missAnomaly()" class="p-2 flex justify-between text-slate-600">
+                            <span>Comercio:</span><span class="font-bold">Surtidora La Alquería</span>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "SMS Falso desde Celular Personal",
+                law: "Modalidad 'Falsa transferencia digital / Smishing'. Las entidades financieras envían notificaciones únicamente desde códigos cortos oficiales.",
+                anomalies: [
+                    { id: "s1", label: "Remitente es un número celular (+57 315...)", detail: "Los bancos nunca notifican desde líneas celulares de 10 dígitos." },
+                    { id: "s2", label: "Errores de ortografía ('trasferencia exitossa')", detail: "Texto redactado manualmente para simular una alerta bancaria." },
+                    { id: "s3", label: "Hora madrugada (02:15 AM)", detail: "No coincide con la hora de la transacción (2:30 PM)." }
+                ],
+                html: `
+                    <div class="w-full max-w-[320px] bg-white text-slate-900 rounded-2xl p-4 shadow-md border border-slate-200 space-y-3 text-xs">
+                        <div onclick="hitAnomaly(this, 's1')" data-id="s1" class="anomaly-zone bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <div class="text-[11px] text-slate-500">Remitente del mensaje:</div>
+                            <div class="font-extrabold mono text-sm">+57 315 882 9410</div>
+                        </div>
+                        <div onclick="hitAnomaly(this, 's3')" data-id="s3" class="anomaly-zone text-center py-1.5 bg-slate-100 rounded-lg font-bold">
+                            Recibido: Hoy · 02:15 AM
+                        </div>
+                        <div onclick="hitAnomaly(this, 's2')" data-id="s2" class="anomaly-zone bg-slate-50 p-3 rounded-xl border border-slate-200 leading-relaxed">
+                            <strong>NEQUI:</strong> Usted recibio una <u>trasferencia exitossa</u> por $210.000 en Surtidora La Alquería.
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "Consignación Inexistente / Programada",
+                law: "Modalidad 'Consignaciones inexistentes'. Un envío programado no garantiza disponibilidad real de fondos.",
+                anomalies: [
+                    { id: "p1", label: "Estado: 'Transferencia Programada'", detail: "El dinero aún no ha sido debitado ni abonado." },
+                    { id: "p2", label: "Fecha de abono para mañana", detail: "La operación puede ser cancelada por el remitente en cualquier momento." },
+                    { id: "p3", label: "Comercio destino equivocado ('Fruver El Sol')", detail: "No corresponde a Surtidora La Alquería." }
+                ],
+                html: `
+                    <div class="w-full max-w-[320px] bg-white text-slate-900 rounded-2xl p-4 shadow-md border border-slate-200 space-y-3 text-xs">
+                        <div onclick="hitAnomaly(this, 'p1')" data-id="p1" class="anomaly-zone bg-amber-100 text-amber-900 border border-amber-300 p-3 rounded-xl font-extrabold text-center text-sm">
+                            ⏳ Transferencia Programada
+                        </div>
+                        <div onclick="missAnomaly()" class="p-2 flex justify-between border-b">
+                            <span class="text-slate-500">Valor:</span><span class="mono font-extrabold">$350.000</span>
+                        </div>
+                        <div onclick="hitAnomaly(this, 'p2')" data-id="p2" class="anomaly-zone p-2 flex justify-between border border-slate-200">
+                            <span class="text-slate-500">Se abonará el:</span><span class="font-bold text-amber-700">Sábado 18 Nov (Mañana)</span>
+                        </div>
+                        <div onclick="hitAnomaly(this, 'p3')" data-id="p3" class="anomaly-zone p-2 flex justify-between border border-slate-200">
+                            <span class="text-slate-500">Comercio:</span><span class="font-bold">Fruver El Sol</span>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        function setPace(mode) {
+            paceMode = mode;
+            const btnRelaxed = document.getElementById('pace-relaxed');
+            const btnTimed = document.getElementById('pace-timed');
+            if (mode === 'relaxed') {
+                btnRelaxed.className = "py-2.5 px-3 rounded-xl bg-[#004d23] text-white font-bold text-xs border-2 border-[#003819] shadow-sm transition";
+                btnTimed.className = "py-2.5 px-3 rounded-xl bg-white text-slate-700 font-bold text-xs border border-slate-300 transition";
+            } else {
+                btnTimed.className = "py-2.5 px-3 rounded-xl bg-[#004d23] text-white font-bold text-xs border-2 border-[#003819] shadow-sm transition";
+                btnRelaxed.className = "py-2.5 px-3 rounded-xl bg-white text-slate-700 font-bold text-xs border border-slate-300 transition";
+            }
+        }
+
+        async function startGame() {
+            if (!(await window._0xchk())) return;
+            currentIdx = 0;
+            document.getElementById('screen-intro').classList.add('hidden');
+            document.getElementById('screen-play').classList.remove('hidden');
+            loadCase();
+        }
+
+        function loadCase() {
+            const c = cases[currentIdx];
+            foundSet.clear();
+            document.getElementById('m2-step').textContent = `Comprobante ${currentIdx + 1} de ${cases.length}`;
+            document.getElementById('m2-receipt-area').innerHTML = c.html;
+            document.getElementById('m2-toast').textContent = "Toque los 3 errores en el comprobante...";
+            updateDots();
+            startTimer();
+        }
+
+        function startTimer() {
+            clearInterval(activeTimer);
+            const timerBox = document.getElementById('m2-timer-box');
+            const addBtn = document.getElementById('m2-addtime-btn');
+
+            if (paceMode === 'relaxed') {
+                timerBox.classList.add('hidden');
+                addBtn.classList.add('hidden');
+                return;
+            }
+
+            secondsLeft = 60;
+            timerBox.classList.remove('hidden');
+            addBtn.classList.remove('hidden');
+            timerBox.textContent = `${secondsLeft}s`;
+
+            activeTimer = setInterval(() => {
+                secondsLeft--;
+                timerBox.textContent = `${Math.max(0, secondsLeft)}s`;
+                if (secondsLeft <= 0) {
+                    clearInterval(activeTimer);
+                    finishCase(false);
+                }
+            }, 1000);
+        }
+
+        function addExtraTime() {
+            secondsLeft += 20;
+            document.getElementById('m2-timer-box').textContent = `${secondsLeft}s`;
+        }
+
+        function hitAnomaly(el, id) {
+            if (foundSet.has(id)) return;
+            foundSet.add(id);
+            el.classList.add('anomaly-found');
+            updateDots();
+
+            const item = cases[currentIdx].anomalies.find(a => a.id === id);
+            document.getElementById('m2-toast').textContent = `✅ Identificado: ${item.label}`;
+
+            if (foundSet.size === 3) {
+                clearInterval(activeTimer);
+                setTimeout(() => finishCase(true), 450);
+            }
+        }
+
+        function missAnomaly() {
+            document.getElementById('m2-toast').textContent = "ℹ️ Dato legítimo. Continúe buscando las 3 anomalías.";
+        }
+
+        function useHint() {
+            const c = cases[currentIdx];
+            const rem = c.anomalies.find(a => !foundSet.has(a.id));
+            if (!rem) return;
+            const target = document.querySelector(`[data-id="${rem.id}"]`);
+            if (target) {
+                target.style.boxShadow = "0 0 0 3px #d97706";
+                document.getElementById('m2-toast').textContent = `💡 Pista: Revise "${rem.label}"`;
+            }
+        }
+
+        function updateDots() {
+            const dots = document.getElementById('m2-dots').children;
+            for (let i = 0; i < 3; i++) {
+                dots[i].className = i < foundSet.size
+                    ? "w-4 h-4 rounded-full bg-red-600 border border-red-300"
+                    : "w-4 h-4 rounded-full bg-slate-300";
+            }
+        }
+
+        function finishCase(success) {
+            const c = cases[currentIdx];
+            const modal = document.getElementById('edu-modal');
+            const badge = document.getElementById('edu-badge');
+
+            if (success) {
+                badge.textContent = "✅ ANOMALÍAS IDENTIFICADAS";
+                badge.className = "inline-block px-3 py-1 rounded-full text-xs font-extrabold mb-2 bg-emerald-100 text-[#004d23]";
+            } else {
+                badge.textContent = "⚠️ REVISIÓN DE SEÑALES";
+                badge.className = "inline-block px-3 py-1 rounded-full text-xs font-extrabold mb-2 bg-red-100 text-red-700";
+            }
+
+            document.getElementById('edu-title').textContent = c.title;
+            document.getElementById('edu-details').innerHTML = c.anomalies.map((a, i) => `
+                <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-xs">
+                    <div class="font-extrabold text-red-700">${i + 1}. ${a.label}</div>
+                    <div class="text-slate-600 mt-0.5">${a.detail}</div>
+                </div>
+            `).join('');
+            document.getElementById('edu-law').textContent = c.law;
+
+            document.getElementById('edu-next-btn').onclick = () => {
+                modal.classList.add('hidden');
+                currentIdx++;
+                if (currentIdx < cases.length) {
+                    loadCase();
+                } else {
+                    document.getElementById('screen-play').classList.add('hidden');
+                    document.getElementById('screen-end').classList.remove('hidden');
+                }
+            };
+
+            modal.classList.remove('hidden');
+        }
+
+        async function resetGame() {
+            if (!(await window._0xchk())) return;
+            document.getElementById('screen-end').classList.add('hidden');
+            document.getElementById('screen-intro').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

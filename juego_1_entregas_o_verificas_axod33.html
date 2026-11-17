@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es" data-dev="@AxoD">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="@AxoD">
+    <title>¿Entregas o Verificas? - Policía Nacional · CAI La Alquería</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eef2ef;
+            color: #1e293b;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .anim-in {
+            animation: fadeUp 0.25s ease forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-2 sm:p-5">
+
+    <div class="w-full max-w-md bg-white border border-slate-200 rounded-3xl shadow-xl overflow-hidden flex flex-col min-h-[90vh] relative">
+
+        <header class="bg-gradient-to-r from-[#003819] via-[#004d23] to-[#003819] border-b-2 border-[#c5a059] px-5 py-3.5 flex items-center justify-between text-white">
+            <div>
+                <div class="text-[10px] font-bold uppercase tracking-widest text-[#e5c687]">Policía Nacional de Colombia</div>
+                <div class="text-sm font-extrabold text-white leading-tight">ECSAN · CAI La Alquería</div>
+            </div>
+            <span class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white/10 border border-white/20 text-[#e5c687]">Módulo 1</span>
+        </header>
+
+        <section id="screen-expired" class="hidden p-6 flex-1 flex flex-col justify-between text-center anim-in">
+            <div class="my-auto">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-3xl">⏳</div>
+                <div class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-extrabold uppercase mb-3">
+                    Período Piloto Finalizado
+                </div>
+                <h2 class="text-2xl font-extrabold text-slate-900 mb-3">
+                    Licencia de 4 Meses Vencida
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                    El ciclo inicial de evaluación del <strong class="text-slate-900">Laboratorio Móvil de Prevención del Fraude Digital</strong> ha finalizado.
+                </p>
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs text-slate-600 space-y-3">
+                    <div class="font-bold text-slate-800">Para renovar el servicio institucional, contacta a <span class="text-[#004d23]">@AxoD</span>:</div>
+                    <a href="https://wa.me/573214714380?text=Hola%20%40AxoD%2C%20solicito%20renovaci%C3%B3n%20del%20Laboratorio%20M%C3%B3vil%20Antifraude." target="_blank" class="block w-full py-3 rounded-xl bg-[#004d23] hover:bg-[#003819] text-white font-extrabold transition">
+                        📲 WhatsApp: 321 471 4380
+                    </a>
+                    <a href="mailto:cobra9.2@hotmail.es?subject=Renovaci%C3%B3n%20Laboratorio%20M%C3%B3vil%20Antifraude" class="block w-full py-2.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-100 text-slate-800 font-bold transition">
+                        ✉️ cobra9.2@hotmail.es
+                    </a>
+                </div>
+            </div>
+            <div class="text-center text-[10px] text-slate-400 mt-4">
+                Desarrollado por @AxoD · 321 471 4380
+            </div>
+        </section>
+
+        <section id="screen-intro" class="p-5 flex-1 flex flex-col justify-between anim-in">
+            <div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#004d23]/10 border border-[#004d23]/20 text-[#004d23] text-xs font-bold mb-3">
+                    <span>🏪</span> PREVENCIÓN DEL FRAUDE DIGITAL
+                </div>
+                <h1 class="text-2xl font-extrabold text-slate-900 leading-snug mb-2">
+                    ¿Entregas o Verificas?
+                </h1>
+                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                    Estrategia pedagógica para comerciantes del barrio <strong class="text-slate-900">La Alquería (Puente Aranda)</strong>. Aprende a validar cada pago en tu propio dispositivo antes de entregar mercancía.
+                </p>
+
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3.5 mb-4">
+                    <div class="text-xs font-extrabold text-[#004d23] uppercase tracking-wide mb-2">
+                        ⏱️ Selecciona el ritmo de lectura:
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button id="pace-relaxed" onclick="setPace('relaxed')" class="py-2.5 px-3 rounded-xl bg-[#004d23] text-white font-bold text-xs border-2 border-[#003819] shadow-sm transition">
+                            🐢 Sin Reloj<br><span class="font-normal text-[11px] opacity-90">Lectura pausada</span>
+                        </button>
+                        <button id="pace-timed" onclick="setPace('timed')" class="py-2.5 px-3 rounded-xl bg-white text-slate-700 font-bold text-xs border border-slate-300 transition">
+                            ⏳ Tiempo Amplio<br><span class="font-normal text-[11px] text-slate-500">60 seg + tiempo extra</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-[#004d23]/[0.04] border border-[#004d23]/15 rounded-2xl p-3.5 text-xs text-slate-700 space-y-1.5">
+                    <div><strong class="text-slate-900">Establecimiento:</strong> Textiles La Alquería</div>
+                    <div><strong class="text-slate-900">Línea / Llave Oficial:</strong> <span class="mono text-[#004d23] font-bold">310 555 8899</span></div>
+                    <div><strong class="text-slate-900">Capital Base en Caja:</strong> <span class="mono text-slate-900 font-bold">$1.000.000 COP</span></div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <button onclick="startGame()" class="w-full py-4 rounded-2xl bg-[#004d23] hover:bg-[#003819] text-white font-extrabold text-base shadow-md transition">
+                    INICIAR EJERCICIO PRÁCTICO
+                </button>
+                <div class="text-center text-[10px] text-slate-400 mt-3 tracking-wide">
+                    @AxoD · 321 471 4380 · cobra9.2@hotmail.es
+                </div>
+            </div>
+        </section>
+
+        <section id="screen-play" class="hidden flex-1 flex flex-col anim-in">
+            <div class="bg-slate-50 p-4 border-b border-slate-200">
+                <div class="flex justify-between items-center mb-2">
+                    <span id="m1-step" class="text-xs font-extrabold px-3 py-1 rounded-lg bg-[#004d23]/10 text-[#004d23]">Caso 1 de 4</span>
+                    <div class="flex items-center gap-2">
+                        <span id="m1-timer-box" class="hidden mono text-sm font-bold bg-white border border-slate-300 px-2.5 py-1 rounded-lg text-slate-800">60s</span>
+                        <button id="m1-addtime-btn" onclick="addExtraTime()" class="hidden px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 text-xs font-bold border border-amber-300">+20s</button>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
+                    <div>
+                        <div class="text-[11px] text-slate-500">Caja del Local:</div>
+                        <div id="m1-cash" class="text-base font-extrabold text-[#004d23] mono">$1.000.000</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-[11px] text-slate-500">Cuenta Oficial:</div>
+                        <div class="text-xs font-bold text-slate-800">Textiles La Alquería · 310 555 8899</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 flex-1 overflow-y-auto space-y-3" id="m1-body"></div>
+
+            <div class="p-4 bg-slate-50 border-t border-slate-200 space-y-2.5">
+                <button onclick="checkOwnPhone()" class="w-full py-3.5 rounded-2xl bg-[#1e3a8a] hover:bg-[#172554] text-white font-extrabold text-sm shadow-sm flex items-center justify-center gap-2 transition">
+                    📲 VERIFICAR EN MI PROPIO CELULAR
+                </button>
+                <div class="grid grid-cols-2 gap-2.5">
+                    <button onclick="decide(false)" class="py-3.5 rounded-2xl bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm transition">
+                        ❌ RECHAZAR PAGO
+                    </button>
+                    <button onclick="decide(true)" class="py-3.5 rounded-2xl bg-[#004d23] hover:bg-[#003819] text-white font-extrabold text-sm transition">
+                        ✅ ENTREGAR PEDIDO
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="screen-end" class="hidden p-6 flex-1 flex flex-col justify-between text-center anim-in">
+            <div class="my-auto">
+                <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-[#004d23]/10 flex items-center justify-center text-3xl">🛡️</div>
+                <h2 class="text-2xl font-extrabold text-slate-900 mb-2">Jornada Completada</h2>
+                <p class="text-sm text-slate-600 mb-5">Balance final registrado en caja:</p>
+                <div id="final-cash" class="text-3xl font-extrabold text-[#004d23] mono bg-slate-50 border border-slate-200 py-4 rounded-2xl mb-5">$1.000.000</div>
+                <div class="bg-[#004d23]/[0.06] border border-[#004d23]/20 rounded-2xl p-4 text-xs text-slate-700 leading-relaxed">
+                    <strong class="text-[#004d23]">Recomendación Policía Nacional:</strong> Nunca entregue mercancía basándose únicamente en la captura de pantalla del comprador. Confirme siempre el abono efectivo en su propia aplicación bancaria.
+                </div>
+            </div>
+            <div>
+                <button onclick="resetGame()" class="w-full py-4 rounded-2xl bg-[#004d23] hover:bg-[#003819] text-white font-extrabold text-base transition">
+                    REPETIR EJERCICIO
+                </button>
+                <div class="text-center text-[10px] text-slate-400 mt-3">
+                    @AxoD · 321 471 4380 · cobra9.2@hotmail.es
+                </div>
+            </div>
+        </section>
+
+        <div id="edu-modal" class="hidden fixed inset-0 bg-slate-900/75 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="w-full max-w-md bg-white border border-slate-200 rounded-3xl p-5 shadow-2xl max-h-[88vh] overflow-y-auto">
+                <div id="edu-badge" class="inline-block px-3 py-1 rounded-full text-xs font-extrabold mb-2"></div>
+                <h3 id="edu-title" class="text-xl font-extrabold text-slate-900 mb-2"></h3>
+                <p id="edu-desc" class="text-sm text-slate-600 leading-relaxed mb-4"></p>
+                <div class="bg-[#004d23]/[0.06] border border-[#004d23]/20 rounded-2xl p-3.5 mb-5">
+                    <div class="text-[11px] font-extrabold text-[#004d23] uppercase mb-1">📘 Orientación Preventiva · Policía Nacional:</div>
+                    <p id="edu-law" class="text-xs text-slate-700 leading-relaxed"></p>
+                </div>
+                <button id="edu-next-btn" class="w-full py-4 rounded-2xl bg-[#004d23] hover:bg-[#003819] text-white font-extrabold text-sm transition">
+                    CONTINUAR →
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        (function(){
+            const _0x1a = atob('MjAyNy0wMy0xN1QyMzo1OTo1OQ==');
+            const _0x1b = 'https://axod33.github.io/laboratorio-alqueria/licencia.json';
+            window._0xchk = async function() {
+                if (new Date() > new Date(_0x1a)) { _0xlock(); return false; }
+                try {
+                    const r = await fetch(_0x1b + '?t=' + Date.now(), { cache: 'no-store' });
+                    if (r.ok) {
+                        const d = await r.json();
+                        if (d && (d.activo === false || (d.expira && new Date() > new Date(d.expira)))) {
+                            _0xlock(); return false;
+                        }
+                    }
+                } catch (e) {}
+                return true;
+            };
+            function _0xlock() {
+                ['screen-intro','screen-play','screen-end'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.add('hidden');
+                });
+                const ex = document.getElementById('screen-expired');
+                if (ex) ex.classList.remove('hidden');
+            }
+            window.addEventListener('DOMContentLoaded', window._0xchk);
+        })();
+
+        let paceMode = 'relaxed';
+        let activeTimer = null;
+        let secondsLeft = 60;
+        let currentIdx = 0;
+        let cash = 1000000;
+
+        const cases = [
+            {
+                client: "Comprador de Rollos de Tela",
+                timeContext: "Viernes · 4:15 PM (Franja Crítica CAI)",
+                order: "3 Rollos de Tela Índigo",
+                expectedAmount: 240000,
+                isLegit: false,
+                phoneChecked: false,
+                ownAppStatus: "❌ SIN MOVIMIENTO: Su saldo no registra ningún ingreso por $240.000.",
+                receiptHTML: `
+                    <div class="bg-white text-slate-900 rounded-2xl p-4 shadow-sm border border-slate-200 space-y-2 text-xs">
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <span class="font-extrabold text-purple-900 text-sm">Comprobante Nequi</span>
+                            <span class="px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-full font-bold">Exitoso</span>
+                        </div>
+                        <div class="flex justify-between"><span class="text-slate-500">Para:</span><span class="font-bold">Textiles La Alquería</span></div>
+                        <div class="flex justify-between"><span class="text-slate-500">Celular:</span><span class="mono font-bold">310 555 8899</span></div>
+                        <div class="flex justify-between"><span class="text-slate-500">Valor enviado:</span><span class="mono font-extrabold text-base text-slate-900">$ 24.000</span></div>
+                        <div class="flex justify-between"><span class="text-slate-500">Fecha:</span><span class="font-bold">Hoy · 4:14 PM</span></div>
+                    </div>
+                `,
+                explanation: "El pedido cuesta $240.000, pero el comprobante indica $24.000 (valor alterado). Al verificar en su propio dispositivo confirma que el monto completo nunca ingresó.",
+                law: "Modalidad 'Falsa transferencia digital'. La verificación directa en la cuenta receptora neutraliza el engaño."
+            },
+            {
+                client: "Cliente Habitual del Sector",
+                timeContext: "Sábado · 11:40 AM",
+                order: "Insumos de Confección y Cierres",
+                expectedAmount: 135000,
+                isLegit: true,
+                phoneChecked: false,
+                ownAppStatus: "✅ PAGO CONFIRMADO: Ingresaron $135.000 a su saldo disponible hoy a las 11:39 AM.",
+                receiptHTML: `
+                    <div class="bg-white text-slate-900 rounded-2xl p-4 shadow-sm border border-slate-200 space-y-2 text-xs">
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <span class="font-extrabold text-red-600 text-sm">DaviPlata · Pasar Plata</span>
+                            <span class="px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded-full font-bold">Aprobado</span>
+                        </div>
+                        <div class="flex justify-between"><span class="text-slate-500">Destino:</span><span class="font-bold">Textiles La Alquería</span></div>
+                        <div class="flex justify-between"><span class="text-slate-500">Celular:</span><span class="mono font-bold">310 555 8899</span></div>
+                        <div class="flex justify-between"><span class="text-slate-500">Valor:</span><span class="mono font-extrabold text-base text-slate-900">$ 135.000</span></div>
+                        <div class="flex justify-between"><span class="text-slate-500">Aprobación:</span><span class="mono font-bold">948271</span></div>
+                    </div>
+                `,
+                explanation: "Transacción 100% legítima. El monto corresponde ($135.000), el destinatario es correcto y el saldo se encuentra reflejado en su cuenta.",
+                law: "La alfabetización digital financiera fortalece la seguridad comercial sin obstaculizar las ventas legítimas."
+            },
+            {
+                client: "Comprador con Vehículo Afuera",
+                timeContext: "Jueves · 5:20 PM",
+                order: "Paquete de Camisetas al por Mayor",
+                expectedAmount: 310000,
+                isLegit: false,
+                phoneChecked: false,
+                ownAppStatus: "❌ SALDO SIN CAMBIOS: No se registra ninguna consignación o abono por $310.000.",
+                receiptHTML: `
+                    <div class="bg-white text-slate-900 rounded-2xl p-4 shadow-sm border border-slate-200 space-y-2 text-xs">
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <span class="font-extrabold text-amber-600 text-sm">Transferencia Programada</span>
+                            <span class="px-2 py-0.5 bg-amber-100 text-amber-800 rounded-full font-bold">Pendiente</span>
+                        </div>
+                        <div class="flex justify-between"><span class="text-slate-500">Para:</span><span class="font-bold">Textiles La Alquería</span></div>
+                        <div class="flex justify-between"><span class="text-slate-500">Valor:</span><span class="mono font-extrabold text-base text-slate-900">$ 310.000</span></div>
+                        <div class="flex justify-between"><span class="text-slate-500">Aplicación del pago:</span><span class="font-bold text-amber-700">Mañana 8:00 AM</span></div>
+                    </div>
+                `,
+                explanation: "El soporte indica 'Transferencia Programada' para el día siguiente. El delincuente programa la operación, muestra la pantalla y cancela el envío tras retirar la mercancía.",
+                law: "Modalidad 'Consignación inexistente'. Conducta tipificada como delito de Estafa en el Art. 246 del Código Penal Colombiano."
+            },
+            {
+                client: "Supuesto Mensajero",
+                timeContext: "Viernes · 2:10 PM",
+                order: "2 Docenas de Pantalones",
+                expectedAmount: 420000,
+                isLegit: false,
+                phoneChecked: false,
+                ownAppStatus: "❌ ALERTA DE FRAUDE: No existen movimientos recientes en su aplicación oficial.",
+                receiptHTML: `
+                    <div class="bg-slate-100 text-slate-900 rounded-2xl p-4 shadow-sm border border-slate-300 space-y-2 text-xs">
+                        <div class="font-bold text-slate-700 border-b border-slate-300 pb-1.5">
+                            📩 SMS de: <span class="mono text-red-700">+57 314 709 2218</span>
+                        </div>
+                        <p class="bg-white p-2.5 rounded-xl border border-slate-200 leading-relaxed">
+                            <strong>Bancolombia:</strong> Le informa que recibio trasferencia por <strong>$420.000</strong> a su cuenta. Saldo disponible en 2 horas.
+                        </p>
+                    </div>
+                `,
+                explanation: "El SMS proviene de una línea celular ordinaria (+57 314...), presenta errores ortográficos ('recibio trasferencia') y las entidades bancarias no retienen abonos inmediatos.",
+                law: "Modalidad 'Smishing / Comprobante falso' advertida por el Centro Cibernético Policial."
+            }
+        ];
+
+        function setPace(mode) {
+            paceMode = mode;
+            const btnRelaxed = document.getElementById('pace-relaxed');
+            const btnTimed = document.getElementById('pace-timed');
+            if (mode === 'relaxed') {
+                btnRelaxed.className = "py-2.5 px-3 rounded-xl bg-[#004d23] text-white font-bold text-xs border-2 border-[#003819] shadow-sm transition";
+                btnTimed.className = "py-2.5 px-3 rounded-xl bg-white text-slate-700 font-bold text-xs border border-slate-300 transition";
+            } else {
+                btnTimed.className = "py-2.5 px-3 rounded-xl bg-[#004d23] text-white font-bold text-xs border-2 border-[#003819] shadow-sm transition";
+                btnRelaxed.className = "py-2.5 px-3 rounded-xl bg-white text-slate-700 font-bold text-xs border border-slate-300 transition";
+            }
+        }
+
+        async function startGame() {
+            if (!(await window._0xchk())) return;
+            currentIdx = 0;
+            cash = 1000000;
+            document.getElementById('screen-intro').classList.add('hidden');
+            document.getElementById('screen-play').classList.remove('hidden');
+            loadCase();
+        }
+
+        function loadCase() {
+            const c = cases[currentIdx];
+            c.phoneChecked = false;
+            document.getElementById('m1-step').textContent = `Caso ${currentIdx + 1} de ${cases.length}`;
+            document.getElementById('m1-cash').textContent = `$${cash.toLocaleString('es-CO')}`;
+
+            document.getElementById('m1-body').innerHTML = `
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3.5 space-y-1.5">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-extrabold text-[#004d23]">${c.timeContext}</span>
+                        <span class="text-xs font-bold text-slate-600">${c.client}</span>
+                    </div>
+                    <div class="text-sm text-slate-800">
+                        Pedido: <strong>${c.order}</strong> · Valor: <strong class="text-[#004d23] mono">$${c.expectedAmount.toLocaleString('es-CO')}</strong>
+                    </div>
+                </div>
+                <div class="text-xs font-bold text-slate-600 px-1">Soporte presentado por el comprador:</div>
+                ${c.receiptHTML}
+                <div id="m1-own-phone-box" class="hidden bg-blue-50 border border-blue-200 rounded-2xl p-3.5 text-xs text-slate-800 leading-relaxed">
+                    <div class="font-extrabold text-[#1e3a8a] uppercase mb-1">📱 Consulta en Aplicación Propia:</div>
+                    ${c.ownAppStatus}
+                </div>
+            `;
+
+            startTimer();
+        }
+
+        function startTimer() {
+            clearInterval(activeTimer);
+            const timerBox = document.getElementById('m1-timer-box');
+            const addBtn = document.getElementById('m1-addtime-btn');
+
+            if (paceMode === 'relaxed') {
+                timerBox.classList.add('hidden');
+                addBtn.classList.add('hidden');
+                return;
+            }
+
+            secondsLeft = 60;
+            timerBox.classList.remove('hidden');
+            addBtn.classList.remove('hidden');
+            timerBox.textContent = `${secondsLeft}s`;
+
+            activeTimer = setInterval(() => {
+                secondsLeft--;
+                timerBox.textContent = `${Math.max(0, secondsLeft)}s`;
+                if (secondsLeft <= 0) {
+                    clearInterval(activeTimer);
+                    showEduModal(false, "Tiempo Agotado", "Ante cualquier duda en el mostrador, nunca entregue bajo presión. Verifique siempre su propia cuenta.", cases[currentIdx].explanation, cases[currentIdx].law);
+                }
+            }, 1000);
+        }
+
+        function addExtraTime() {
+            secondsLeft += 20;
+            document.getElementById('m1-timer-box').textContent = `${secondsLeft}s`;
+        }
+
+        function checkOwnPhone() {
+            cases[currentIdx].phoneChecked = true;
+            document.getElementById('m1-own-phone-box').classList.remove('hidden');
+        }
+
+        function decide(delivered) {
+            clearInterval(activeTimer);
+            const c = cases[currentIdx];
+            let correct = false;
+            let title = "";
+            let desc = "";
+
+            if (delivered && c.isLegit) {
+                correct = true;
+                cash += c.expectedAmount;
+                title = "Transacción Segura Verificada";
+                desc = `Confirmó correctamente el abono de $${c.expectedAmount.toLocaleString('es-CO')} en su cuenta.`;
+            } else if (!delivered && !c.isLegit) {
+                correct = true;
+                title = "Intento de Estafa Neutralizado";
+                desc = `Protegió el patrimonio de su establecimiento por valor de $${c.expectedAmount.toLocaleString('es-CO')}.`;
+            } else if (delivered && !c.isLegit) {
+                correct = false;
+                cash = Math.max(0, cash - c.expectedAmount);
+                title = "Alerta: Entrega con Soporte Falso";
+                desc = `Se registró una pérdida de $${c.expectedAmount.toLocaleString('es-CO')} en mercancía. Utilice siempre el botón "Verificar en mi propio celular".`;
+            } else {
+                correct = false;
+                title = "Rechazo de Operación Legítima";
+                desc = "El pago sí ingresó efectivamente a su cuenta. Consultar su aplicación oficial le brinda seguridad para concretar la venta.";
+            }
+
+            document.getElementById('m1-cash').textContent = `$${cash.toLocaleString('es-CO')}`;
+            showEduModal(correct, title, desc, c.explanation, c.law);
+        }
+
+        function showEduModal(isGood, title, desc, extra, law) {
+            const modal = document.getElementById('edu-modal');
+            const badge = document.getElementById('edu-badge');
+
+            if (isGood) {
+                badge.textContent = "✅ BUENA PRÁCTICA PREVENTIVA";
+                badge.className = "inline-block px-3 py-1 rounded-full text-xs font-extrabold mb-2 bg-emerald-100 text-[#004d23]";
+            } else {
+                badge.textContent = "⚠️ ALERTA DE SEGURIDAD";
+                badge.className = "inline-block px-3 py-1 rounded-full text-xs font-extrabold mb-2 bg-red-100 text-red-700";
+            }
+
+            document.getElementById('edu-title').textContent = title;
+            document.getElementById('edu-desc').textContent = `${desc} ${extra}`;
+            document.getElementById('edu-law').textContent = law;
+
+            document.getElementById('edu-next-btn').onclick = () => {
+                modal.classList.add('hidden');
+                currentIdx++;
+                if (currentIdx < cases.length) {
+                    loadCase();
+                } else {
+                    document.getElementById('screen-play').classList.add('hidden');
+                    document.getElementById('screen-end').classList.remove('hidden');
+                    document.getElementById('final-cash').textContent = `$${cash.toLocaleString('es-CO')}`;
+                }
+            };
+
+            modal.classList.remove('hidden');
+        }
+
+        async function resetGame() {
+            if (!(await window._0xchk())) return;
+            document.getElementById('screen-end').classList.add('hidden');
+            document.getElementById('screen-intro').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
